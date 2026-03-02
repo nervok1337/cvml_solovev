@@ -185,4 +185,4 @@ for i in range(0,7):
             result_str += " "
         result_str += edited_tags[int(r) - 1]
 
-    print(result_str)
+    print(i, result_str)
