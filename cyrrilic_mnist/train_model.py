@@ -98,10 +98,10 @@ class rCNN(nn.Module):
 
         # block result
         self.flatten = nn.Flatten()
-        self.fc1 = nn.Linear(128 * 4 * 4, 512)
+        self.fc1 = nn.Linear(128 * 3 * 3, 256)
         self.relu4 = nn.ReLU()
         self.dropout = nn.Dropout(0.5)
-        self.fc2 = nn.Linear(512, cnt_classes)
+        self.fc2 = nn.Linear(256, cnt_classes)
 
     def forward(self, x):
         x = self.conv1(x)
@@ -128,7 +128,7 @@ class rCNN(nn.Module):
 
 
 train_transform = transforms.Compose([
-    transforms.Resize((32, 32)),
+    transforms.Resize((28, 28)),
     transforms.RandomRotation(15),
     transforms.RandomAffine(
         degrees=0,
@@ -139,7 +139,7 @@ train_transform = transforms.Compose([
     transforms.Normalize((0.5,), (0.5,))
 ])
 test_transform = transforms.Compose([
-    transforms.Resize((32, 32)),
+    transforms.Resize((28, 28)),
     transforms.ToTensor(),
     transforms.Normalize((0.5,), (0.5,))
 ])
